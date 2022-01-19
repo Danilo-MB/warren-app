@@ -5,7 +5,7 @@ import AppNavigation from './src/screens/AppNavigation';
 const App = () => {
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       <StatusBar barStyle='light-content' />
       <AppNavigation />
     </SafeAreaView>
