@@ -14,6 +14,12 @@ export function fetchLoginSuccess(email) {
   };
 };
 
+export function acceptTerms() {
+  return {
+    type: types.ACCEPT_TERMS,
+  }
+};
+
 export function fetchFailed(error) {
   return {
     type: types.FETCH_FAILED,

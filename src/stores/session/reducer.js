@@ -10,6 +10,9 @@ const Session = (state = initialState, action) =>
       case types.FETCH_STARTED:
         draft.loading = true;
         break;
+      case types.ACCEPT_TERMS:
+        draft.termsAccepted = true;
+        break;
       case types.LOGIN_SUCCESS:
         draft.loading = false;
         draft.email = action.email;

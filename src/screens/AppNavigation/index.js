@@ -5,7 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import LoginScreen from '../Login';
 import HomeScreen from '../Home';
-import { getEmail } from '../../stores/session/selectors'; 
+import WelcomeScreen from '../Welcome';
+import FlightPlanStack from '../FlightPlan';
+import { getEmail, termsAccepted } from '../../stores/session/selectors'; 
 import { colors } from '../../styles';
 import Badge from '../../components/Badge';
 
@@ -14,6 +16,8 @@ const Stack = createStackNavigator();
 const AppNavigation = () => {
 
   const userEmail = useSelector(getEmail);
+  const isTermsAccepted = useSelector(termsAccepted);
+  console.log(isTermsAccepted, 'IS TERMS ACCEPTED')
 
   return (
     <NavigationContainer>
@@ -24,6 +28,12 @@ const AppNavigation = () => {
           headerShown: false,
           unmountOnBlur: true,
         }}>
+        {(!userEmail && !isTermsAccepted) &&
+        <Stack.Screen
+          name="WelcomeScreen"
+          title=""
+          component={WelcomeScreen}
+        />}
         <Stack.Screen
           name="LoginScreen"
           title=""
@@ -54,6 +64,11 @@ const AppNavigation = () => {
             headerTintColor: colors.white,
             headerTitleStyle: {fontSize: 14}
           }}
+        />
+        <Stack.Screen
+          name="FlightPlan"
+          title=""
+          component={FlightPlanStack}
         />
       </Stack.Navigator>
     </NavigationContainer>
