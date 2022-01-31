@@ -14,22 +14,22 @@ function processResponse(response) {
 };
 
 async function fetch(url, config) {
-  const { headers, method = 'GET', ...rest } = config;
+  const { headers, method, ...rest } = config;
 
   const options = {
     method,
     headers: {
-      client: CLIENT,
-      secret: SECRET,
+      // client: CLIENT,
+      // secret: SECRET,
       'Content-Type': 'application/json',
       post: { 'Content-Type': 'application/json' },
       ...headers,
     },
     ...rest,
   };
-
+  
   try {
-    return processResponse(await axios(path(url)));
+    return processResponse(await axios(path(url), options));
   } catch (e) {
     const status = get(e, 'response.status');
     const data = get(e, 'response.data');

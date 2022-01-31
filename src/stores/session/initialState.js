@@ -1,6 +1,7 @@
 export const initialState = {
   loading: false,
-  email: null,
+  userId: null,
+  user: {},
   error: null,
   termsAccepted: false,
 };

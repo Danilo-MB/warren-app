@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Image, StyleSheet } from 'react-native';
 import Logo from '../../commons/images/Logo/logo.png';
 import { MainWrapper, LogoSection, TextSection, StyledText, InputSection, ButtonSection } from './styled';
@@ -7,7 +7,9 @@ import Input from '../../components/Input';
 import MailIcon from '../../commons/icons/Mail';
 import { colors } from '../../styles';
 import Button from '../../components/Button';
-import { login } from '../../stores/session/actions';
+import { login, getUser } from '../../stores/session/actions';
+import { getUserId, getUserObject } from '../../stores/session/selectors';
+import axios from 'axios';
 
 const emailPattern = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
@@ -38,12 +40,23 @@ const LoginScreen = ({navigation}) => {
     return false;
   };
 
-  const onLogin = () => {
+  const userId = useSelector(getUserId);
+
+  useEffect(() => {
+    if(userId) {
+      dispatch(getUser(userId));
+      navigation.navigate("HomeScreen");
+    }else {
+      return
+    };
+  }, [userId]);
+
+  const onLogin = async () => {
     if (hasErrors()) return;
     dispatch(login(email));
-    navigation.navigate("HomeScreen")
   };
-
+  const user = useSelector(getUserObject)
+  console.log(user, 'user en login')
   return (
     <MainWrapper>
       <LogoSection>

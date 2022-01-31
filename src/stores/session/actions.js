@@ -7,10 +7,17 @@ export function fetchStarted() {
   };
 };
 
-export function fetchLoginSuccess(email) {
+export function fetchLoginSuccess(userId) {
   return {
     type: types.LOGIN_SUCCESS,
-    email,
+    userId,
+  };
+};
+
+export function getUserSuccess(user) {
+  return {
+    type: types.FETCH_USER_SUCCESS,
+    user,
   };
 };
 
@@ -32,9 +39,21 @@ export function login(email) {
     const state = getState();
     dispatch(fetchStarted());
     try {
-      //const response = await API.session.login(email);
-      const response = email
-      dispatch(fetchLoginSuccess(response));
+      const response = await API.session.login(email);
+      dispatch(fetchLoginSuccess(response.userId));
+    } catch (e) {
+      dispatch(fetchFailed(e));
+    }
+  };
+};
+
+export function getUser(userId) {
+  return async (dispatch, getState) => {
+    const state = getState();
+    dispatch(fetchStarted());
+    try {
+      const response = await API.session.fetchUser(userId);
+      dispatch(getUserSuccess(response));
     } catch (e) {
       dispatch(fetchFailed(e));
     }

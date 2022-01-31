@@ -8,3 +8,11 @@ export const login = (email) =>
       password: 'miprimervuelo'
     },
 });
+
+export const fetchUser = (userId) => (
+  fetch(`/api/pilots/${userId}`, {
+    method: 'GET',
+  }
+  )
+);
+

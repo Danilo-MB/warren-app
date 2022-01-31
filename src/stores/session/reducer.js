@@ -13,9 +13,13 @@ const Session = (state = initialState, action) =>
       case types.ACCEPT_TERMS:
         draft.termsAccepted = true;
         break;
+      case types.FETCH_USER_SUCCESS:
+        draft.loading = false;
+        draft.user = action.user;
+        break;
       case types.LOGIN_SUCCESS:
         draft.loading = false;
-        draft.email = action.email;
+        draft.userId = action.userId;
         break;
       case types.FETCH_FAILED:
         draft.loading = false;
