@@ -47,6 +47,18 @@ export function login(email) {
   };
 };
 
+export function loginWithError(email) {
+  return async dispatch => {
+    dispatch(fetchStarted());
+    try {
+      const response = await API.session.loginWithError(email);
+      dispatch(fetchLoginSuccess(response));
+    } catch (e) {
+      dispatch(fetchFailed(e));
+    }
+  };
+}
+
 export function getUser(userId) {
   return async (dispatch, getState) => {
     const state = getState();

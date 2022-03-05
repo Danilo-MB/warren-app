@@ -3,14 +3,20 @@ import { Wrapper, HeaderSection, Header, IconSection } from './styled';
 
 const Card = (props) => {
 
-  const { onPress, header, icon } = props;
+  const { width, height, fontSize, onPress, header, icon } = props;
 
   return (
     <Wrapper
       onPress={onPress}
+      width={width}
+      height={height}
     >
       <HeaderSection>
-        <Header>{header}</Header>
+        <Header
+          fontSize={fontSize}
+        >
+          {header}
+        </Header>
       </HeaderSection>
       <IconSection>
         {icon}

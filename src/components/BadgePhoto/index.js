@@ -1,16 +1,14 @@
-// import React from 'react';
-// import { Wrapper } from './styled';
-// import { Image } from 'react-native';
+import React from 'react';
+import { Wrapper } from './styled';
+import { Image, ImageBackground, View } from 'react-native';
 
-// const BadgePhoto = (props) => {
+const BadgePhoto = (props) => {
 
-//   const { width, borderColor, borderRadius, imageUrl } = props,
+  const { width, height, borderWidth, borderColor, borderRadius, imageUrl } = props;
 
-//   return (
-//     <Wrapper>
-//       <Image />
-//     </Wrapper>
-//   );
-// };
+  return (
+    <Image style={{borderColor: borderColor, borderRadius: borderRadius, borderWidth: borderWidth, width: width, height: height }} source={{uri: imageUrl}}/>
+  );
+};
 
-// export default BadgePhoto;
+export default BadgePhoto;

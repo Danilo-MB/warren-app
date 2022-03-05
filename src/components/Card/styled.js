@@ -6,14 +6,15 @@ export const Wrapper = styled(TouchableOpacity)`
   display: flex;
   background-color: ${colors.black};
   flex-direction: column;
-  width: 48%;
-  height: 200px;
+  width: ${props => props.width ? props.width : '48%'};
+  height: ${props => props.height ? props.height : '200px'};
   border: 1px;
   border-color: ${colors.black};
   border-radius: 30px;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+  padding: 5px;
 `;
 
 export const HeaderSection = styled(View)`
@@ -23,7 +24,7 @@ export const HeaderSection = styled(View)`
 `;
 
 export const Header = styled(Text)`
-  font-size: 20px;
+  font-size: ${props => props.fontSize ? props.fontSize : '20px'}
   font-weight: bold;
   color: ${colors.white};
 `;

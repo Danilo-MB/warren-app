@@ -7,6 +7,7 @@ import LoginScreen from '../Login';
 import HomeStack from '../Home';
 import WelcomeScreen from '../Welcome';
 import FlightPlanStack from '../FlightPlan';
+import PilotProfile from '../PilotProfile';
 import { getUserId, termsAccepted, getUserObject } from '../../stores/session/selectors'; 
 import { colors } from '../../styles';
 import Badge from '../../components/Badge';
@@ -29,6 +30,11 @@ const AppNavigation = () => {
           unmountOnBlur: true,
         }}>
         <Stack.Screen
+          name="PilotProfile"
+          title=""
+          component={PilotProfile}
+        />
+        <Stack.Screen
           name="WelcomeScreen"
           title=""
           component={WelcomeScreen}
@@ -39,7 +45,7 @@ const AppNavigation = () => {
           component={LoginScreen}
         />
         <Stack.Screen
-          name="HomeScreen"
+          name="HomeStack"
           title=""
           component={HomeStack}
           options={{

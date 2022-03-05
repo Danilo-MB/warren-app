@@ -17,7 +17,7 @@ const LoginScreen = ({navigation}) => {
 
   const dispatch = useDispatch();
 
-  const [form, setForm] = useState('');
+  const [form, setForm] = useState({email: 'danilo@gmail.com'});
   const [errorForm, setErrorForm] = useState('');
 
   const { email } = form;
@@ -45,7 +45,7 @@ const LoginScreen = ({navigation}) => {
   useEffect(() => {
     if(userId) {
       dispatch(getUser(userId));
-      navigation.navigate("HomeScreen");
+      navigation.navigate("HomeStack");
     }else {
       return
     };
@@ -55,8 +55,7 @@ const LoginScreen = ({navigation}) => {
     if (hasErrors()) return;
     dispatch(login(email));
   };
-  const user = useSelector(getUserObject)
-  console.log(user, 'user en login')
+
   return (
     <MainWrapper>
       <LogoSection>

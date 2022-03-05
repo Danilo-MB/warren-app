@@ -9,6 +9,13 @@ export const login = (email) =>
     },
 });
 
+export const loginWithError = (email) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('Usuario o contraseña inválida');
+    }, 500);
+});
+
 export const fetchUser = (userId) => (
   fetch(`/api/pilots/${userId}`, {
     method: 'GET',
